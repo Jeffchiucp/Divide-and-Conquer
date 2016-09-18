@@ -1,0 +1,120 @@
+<!doctype html>
+<!-- See http://www.firepad.io/docs/ for detailed embedding docs. -->
+<html>
+
+<head>
+    <title>Divide and Conquer</title>
+    <meta charset="utf-8" />
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+
+    <!-- Font Awesome    -->
+    <script src="https://use.fontawesome.com/72758625ea.js"></script>
+
+    <!--Import Google Icon Font-->
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
+
+    <!--&lt;!&ndash; Compiled and minified JavaScript &ndash;&gt;-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
+
+
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/3.3.0/firebase.js"></script>
+
+    <!-- CodeMirror -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.17.0/codemirror.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.17.0/codemirror.css" />
+
+    <!-- Firepad -->
+    <link rel="stylesheet" href="https://cdn.firebase.com/libs/firepad/1.4.0/firepad.css" />
+    <script src="https://cdn.firebase.com/libs/firepad/1.4.0/firepad.min.js"></script>
+
+    <!-- AngularJS 1.5-->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+
+
+    <!--Trucate JS    -->
+    <script src="truncate.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="main.css">
+</head>
+
+<body ng-app="app" ng-controller="mainController" class="blue-grey lighten-4">
+
+
+
+    <div class="row blue-text">
+        <div class="header z-depth-1 blue-text">
+            <div class="col s4 offset-s8">
+                <ul class="tabs">
+                    <li class="tab col s2 blue-text"><a class="active" href="#images">Images</a></li>
+                    <li class="tab col s2 blue-text"><a class="" href="#articles">Articles</a></li>
+
+                </ul>
+            </div>
+
+        </div>
+        <div class="col m8" style="height:98vh;">
+            <div id="firepad-container"></div>
+        </div>
+
+        <div id="images" class="col s4 sidebar" style="overflow:scroll;">
+            <div id="card image {{$id}}" ng-repeat="item in dataArray track by $id(item)" class="card blue-grey">
+                <div class="card-image">
+                    <img ng-src="{{item.picture}}" height="300vh">
+                    <span class="card-title" ng-bind=""></span>
+                </div>
+                <div class="card-content white-text">
+                    {{ item.summary | words:30 }}
+                </div>
+
+                <div class="card-action">
+                    <a id="btn {{$id}}" ng-click="addImage($id,item)" class="waves-effect waves-light btn blue-grey lighten-2 z-depth-0"><i class="fa fa-plus left"></i>Add</a>
+                    <br>
+                    <br>
+                    <a href="{{item.website}}" target="_blank" ng-bind="item.title"></a>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div id="articles" class="col s4 sidebar" style="overflow:scroll;">
+            <div id="card {{$id}}" ng-repeat="item in dataArray track by $id(item)" class="card blue-grey">
+                <div class="card-content white-text">
+                    <span class="card-title" ng-bind="item.title"></span>
+                    <p style="font-weight: 300;">
+                        {{ item.summary | words:40 }}
+
+                    </p>
+                    <p>
+                        <span style="height: 1em;"></span>
+                        <span class="left thin">Cited by: {{item.cited}}</span>
+                        <span class="right thin">Citation: {{item.cit}}</span>
+
+                    </p>
+                </div>
+                <div class="card-action">
+                    <a id="btn {{$id}}" ng-click="add($id,item)" class="waves-effect waves-light btn blue-grey lighten-2 z-depth-0"><i class="fa fa-plus left"></i>Add</a>
+                    <a ng-href="{{item.website}}" target="_blank" class="waves-effect waves-light btn z-depth-0"><i class="fa fa-info left"></i> More Info</a>
+                </div>
+            </div>
+
+
+        </div>
+
+
+
+
+
+
+    </div>
+    <script src="main.js"></script>
+
+
+</body>
+
+</html>

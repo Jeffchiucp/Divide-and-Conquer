@@ -31,7 +31,7 @@ CORS(app)
 def get_service():
     scopes = ['https://www.googleapis.com/auth/cloud-platform']
     scoped_credentials = ServiceAccountCredentials.from_json_keyfile_name(
-        '/Users/imjching/Downloads/HTN1527-0dabfdd0bab3.json', scopes) # hardcode
+        '/Users/imjching/Downloads/HTN1527-0dabfdd0bab3.json', scopes)
 
     http = httplib2.Http()
     scoped_credentials.authorize(http)
@@ -114,6 +114,8 @@ def test():
     if content == "a":
         content = "Momentum must be conserved in the process, so if q1 is pushed in one direction, then q2 ought to be pushed in the other direction by the same force at the same time. However, the situation becomes more complicated when the finite speed of electromagnetic wave propagation is introduced (see retarded potential). This means that for a brief period the total momentum of the two charges is not conserved, implying that the difference should be accounted for by momentum in the fields, as asserted by Richard P. Feynman.[3] Famous 19th century electrodynamicist James Clerk Maxwell called this the \"electromagnetic momentum\".[4] Yet, such a treatment of fields may be necessary when Lenz's law is applied to opposite charges. It is normally assumed that the charges in question have the same sign. If they do not, such as a proton and an electron, the interaction is different. An electron generating a magnetic field would generate an EMF that causes a proton to accelerate in the same direction as the electron. At first, this might seem to violate the law of conservation of momentum, but such an interaction is seen to conserve momentum if the momentum of electromagnetic fields is taken into account."
 
+    if not content:
+        return Response(status=500, response=dumps([]), mimetype="application/json")
     # # clean and tokenize document string
     # raw = x.lower()
     # tokens = tokenizer.tokenize(raw)

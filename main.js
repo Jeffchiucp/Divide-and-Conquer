@@ -367,7 +367,7 @@ app.controller('mainController', function ($scope) {
 
         input = firepad.getText();
 
-        $.post("http://72e1ec28.ngrok.io/extract", {
+        $.post("http://59053a0c.ngrok.io/extract", {
                 content: input,
             })
             .done(function (data) {
@@ -382,7 +382,7 @@ app.controller('mainController', function ($scope) {
 
             data = firepad.getText();
 
-            $.post("http://72e1ec28.ngrok.io/extract", {
+            $.post("http://59053a0c.ngrok.io/extract", {
                     content: data,
                 })
                 .done(function (data) {
